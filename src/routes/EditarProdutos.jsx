@@ -1,9 +1,12 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { ListaProdutos } from "../components/ListaProdutos";
 import { useState } from "react";
 
 export default function EditarProdutos() {
   document.title = "Editar Produtos";
+
+  //utilizando redirecionamento de ROTAS com useNavigate();
+  const navigate = useNavigate()
 
   //Utilizando o HOOK useParams()
   const { id } = useParams();
@@ -23,24 +26,26 @@ export default function EditarProdutos() {
     preco: produtoFiltrado.preco,
   });
 
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    setProduto({ ...produto, [name]: value });
+  const handleChange = (event)=>{
+      const {name,value} = event.target;
+      setProduto({...produto, [name]:value});
   }
 
-  const handleSubmit = (event) => {
+  const handleSubmit = (event)=>{
     event.preventDefault();
 
 
-    let indice;
+        let indice;
 
-    ListaProdutos.forEach((item, index) => {
-      if (item.id == produto.id) {
-        indice = index;
-      }
+        ListaProdutos.forEach((item,index)=>{
+          if(item.id == produto.id){
+            indice = index;
+          }
+        });
+      ListaProdutos.splice(indice,1,produto);
 
-    });
-    ListaProdutos.splice(indice, 1, produto);
+      //Redirecionando após realizar a edição do produto filtrado.
+      navigate("/produtos");
   }
 
 
@@ -69,8 +74,8 @@ export default function EditarProdutos() {
               <input
                 type="text"
                 name="preco"
-                id="idPreco"
-                onChange={handleChange}
+                id="idPreco" 
+                onChange={handleChange} 
                 value={produto.preco}
               />
             </div>
@@ -80,7 +85,7 @@ export default function EditarProdutos() {
           </fieldset>
         </form>
       </div>
-
+ 
     </>
   );
 }
