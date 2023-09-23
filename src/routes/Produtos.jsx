@@ -3,6 +3,7 @@ import { AiFillEdit as Editar } from "react-icons/ai";
 import { RiDeleteBin2Fill as Excluir } from "react-icons/ri";
 import styles from "./Produtos.module.css";
 import { useState, useEffect } from "react";
+import ModalInserir from "../components/ModalInserir/ModalInserir";
 
 export default function Produtos() {
   document.title = "Produtos";
@@ -21,9 +22,18 @@ export default function Produtos() {
         setListaJson(listaProdutosJson)
     })
   },[]);
+
+  const [open, setOpen] = useState(false);
+
   return (
     <>
       <h1>Lista de Produtos</h1>
+
+      { open ?<ModalInserir open={open} setOpen={setOpen}/> : ""}
+
+      <button onClick={() => setOpen(true)}>Open - Modal</button>
+
+      but
 
       <div>
         <table className={styles.tblEstilo}>
