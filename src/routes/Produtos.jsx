@@ -26,14 +26,12 @@ export default function Produtos() {
   const [open, setOpen] = useState(false);
 
   return (
-    <>
+    <> 
       <h1>Lista de Produtos</h1>
 
-      { open ?<ModalInserir open={open} setOpen={setOpen}/> : ""}
+      {open ? <ModalInserir open={open} setOpen={setOpen}/> : ""}
 
-      <button onClick={() => setOpen(true)}>Open - Modal</button>
-
-      but
+      <button onClick={()=> setOpen(true)}>OPEN - MODAL</button>
 
       <div>
         <table className={styles.tblEstilo}>
